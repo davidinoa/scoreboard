@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const Application = () => {
+const Application = (props) => {
 
   return (
     <div className="scoreboard">
       <div className="header">
-        <h1>Scoreboard</h1>
+        <h1>{props.title}</h1>
       </div>
 
       <div className="players">
@@ -28,4 +28,8 @@ const Application = () => {
 
 };
 
-ReactDOM.render(<Application />, document.getElementById('app'));
+Application.propTypes = {
+  title: React.PropTypes.string.isRequired,
+};
+
+ReactDOM.render(<Application title="My Scoreboard" />, document.getElementById('app'));
