@@ -17,17 +17,25 @@ class Application extends React.Component {
     };
   }
 
+  onScoreChange(index, delta) {
+    this.state.players[index].score += delta;
+    this.setState(this.state);
+  }
+
   render() {
     return (
       <div className="scoreboard">
         <Header title={this.props.title}/>
 
         <div className="players">
-          {this.state.players.map(player => {
+          {this.state.players.map((player, index) => {
             return <Player 
               key={player.id} 
               name={player.name} 
-              score={player.score} 
+              score={player.score}
+              onScoreChange={ (delta) => {
+                this.onScoreChange(index, delta);
+              }} 
             />;
           })}
         </div>
