@@ -30,6 +30,11 @@ class Application extends React.Component {
     this.setState(this.state);
   }
 
+  onRemovePlayer(index) {
+    this.state.players.splice(index, 1);
+    this.setState(this.state);
+  }
+
   render() {
     return (
       <div className="scoreboard">
@@ -43,7 +48,9 @@ class Application extends React.Component {
               score={player.score}
               onScoreChange={ (delta) => {
                 this.onScoreChange(index, delta);
-              }} />;
+              }} 
+              onRemove={ () => this.onRemovePlayer(index) }
+            />;
           })}
         </div>
 
