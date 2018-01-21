@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import AddPlayerForm from './components/AddPlayerForm.jsx';
 import Header from './components/Header.jsx';
 import Player from './components/Player.jsx';
 
@@ -13,12 +14,19 @@ class Application extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      players: this.props.initialPlayers
+      players: this.props.initialPlayers,
+      nextId: 4
     };
   }
 
   onScoreChange(index, delta) {
     this.state.players[index].score += delta;
+    this.setState(this.state);
+  }
+
+  onPlayerAdd(name) {
+    this.state.players.push({ name: name, score: 0, id: this.state.nextId});
+    this.state.nextId++;
     this.setState(this.state);
   }
 
@@ -35,10 +43,11 @@ class Application extends React.Component {
               score={player.score}
               onScoreChange={ (delta) => {
                 this.onScoreChange(index, delta);
-              }} 
-            />;
+              }} />;
           })}
         </div>
+
+        <AddPlayerForm onAdd={this.onPlayerAdd.bind(this)}/>
       </div>
     );
   }
