@@ -1,27 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Header from './components/Header.jsx';
+import Player from './components/Player.jsx';
 
 const Application = (props) => {
 
   return (
     <div className="scoreboard">
-      <div className="header">
-        <h1>{props.title}</h1>
-      </div>
+      <Header title={props.title}/>
 
       <div className="players">
-        <div className="player">
-          <div className="player-name">
-            David Inoa
-          </div>
-          <div className="player-score">
-            <div className="counter">
-              <button className="counter-action decrement"> - </button>
-              <div className="counter-score"> 26 </div>
-              <button className="counter-action increment"> + </button>
-            </div>
-          </div>
-        </div>
+        <Player name="David Inoa" score={7} />
       </div>
     </div>
   );
@@ -29,7 +18,11 @@ const Application = (props) => {
 };
 
 Application.propTypes = {
-  title: React.PropTypes.string.isRequired,
+  title: React.PropTypes.string
+};
+
+Application.defaultProps = {
+  title: 'Scoreboard'
 };
 
 ReactDOM.render(<Application title="My Scoreboard" />, document.getElementById('app'));
