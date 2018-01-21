@@ -9,29 +9,36 @@ const PLAYERS = [
   { name: 'Joe Neckles', score: 14, id: 3 }
 ];
 
-const Application = (props) => {
+class Application extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      players: this.props.initialPlayers
+    };
+  }
 
-  return (
-    <div className="scoreboard">
-      <Header title={props.title}/>
+  render() {
+    return (
+      <div className="scoreboard">
+        <Header title={this.props.title}/>
 
-      <div className="players">
-        {props.players.map(player => {
-          return <Player 
-            key={player.id} 
-            name={player.name} 
-            score={player.score} 
-          />;
-        })}
+        <div className="players">
+          {this.state.players.map(player => {
+            return <Player 
+              key={player.id} 
+              name={player.name} 
+              score={player.score} 
+            />;
+          })}
+        </div>
       </div>
-    </div>
-  );
-
-};
+    );
+  }
+}
 
 Application.propTypes = {
   title: React.PropTypes.string,
-  players: React.PropTypes.arrayOf(React.PropTypes.shape({
+  initialPlayers: React.PropTypes.arrayOf(React.PropTypes.shape({
     name: React.PropTypes.string.isRequired,
     score: React.PropTypes.number.isRequired,
     id: React.PropTypes.number.isRequired
@@ -42,4 +49,4 @@ Application.defaultProps = {
   title: 'Scoreboard'
 };
 
-ReactDOM.render(<Application players={PLAYERS} />, document.getElementById('app'));
+ReactDOM.render(<Application initialPlayers={PLAYERS} />, document.getElementById('app'));
