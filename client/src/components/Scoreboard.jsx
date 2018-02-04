@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AddPlayerForm from './components/AddPlayerForm.jsx';
-import Header from './components/Header.jsx';
-import Player from './components/Player.jsx';
+import AddPlayerForm from './AddPlayerForm.jsx';
+import Header from './Header.jsx';
+import Player from './Player.jsx';
 
 const PLAYERS = [
   { name: 'David Inoa', score: 17, id: 1 },
@@ -10,11 +10,11 @@ const PLAYERS = [
   { name: 'Joe Neckles', score: 14, id: 3 }
 ];
 
-class Application extends React.Component {
+class Scoreboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      players: this.props.initialPlayers,
+      players: PLAYERS,
       nextId: 4
     };
   }
@@ -60,17 +60,17 @@ class Application extends React.Component {
   }
 }
 
-Application.propTypes = {
+Scoreboard.propTypes = {
   title: React.PropTypes.string,
-  initialPlayers: React.PropTypes.arrayOf(React.PropTypes.shape({
-    name: React.PropTypes.string.isRequired,
-    score: React.PropTypes.number.isRequired,
-    id: React.PropTypes.number.isRequired
-  })).isRequired
+  // initialPlayers: React.PropTypes.arrayOf(React.PropTypes.shape({
+  //   name: React.PropTypes.string.isRequired,
+  //   score: React.PropTypes.number.isRequired,
+  //   id: React.PropTypes.number.isRequired
+  // })).isRequired
 };
 
-Application.defaultProps = {
+Scoreboard.defaultProps = {
   title: 'Scoreboard'
 };
 
-ReactDOM.render(<Application initialPlayers={PLAYERS} />, document.getElementById('app'));
+export default Scoreboard;
