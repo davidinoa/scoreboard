@@ -1,6 +1,6 @@
 import React from 'react';
-import Stats from './Stats.jsx';
-import Stopwatch from './Stopwatch.jsx';
+import Stats from './Stats';
+import Stopwatch from './Stopwatch';
 
 const Header = (props) => (
   <div className="header">

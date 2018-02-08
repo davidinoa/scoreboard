@@ -1,10 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import AddPlayerForm from './AddPlayerForm.jsx';
-import Header from './Header.jsx';
-import Player from './Player.jsx';
+import React, { Component } from 'react';
+import Player from '../components/Player';
+import Header from '../components/Header';
+import AddPlayerForm from '../components/AddPlayerForm';
 
-class Scoreboard extends React.Component {
+class Scoreboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
