@@ -4,7 +4,6 @@ class AddPlayerForm extends React.Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       name: ''
     };
@@ -14,17 +13,16 @@ class AddPlayerForm extends React.Component {
     this.setState({ name: e.target.value });
   }
 
-  onSubmit(e) {
+  addPlayer(e) {
     e.preventDefault();
-
-    this.props.onAdd(this.state.name);
+    this.props.addPlayer(this.state.name);
     this.setState({ name: '' });
   }
 
   render() {
     return (
       <div className="add-player-form">
-        <form onSubmit={this.onSubmit.bind(this)}>
+        <form onSubmit={this.addPlayer.bind(this)}>
           <input 
             type="text" 
             value={this.state.name}
@@ -38,7 +36,7 @@ class AddPlayerForm extends React.Component {
 }
 
 AddPlayerForm.propTypes = {
-  onAdd: React.PropTypes.func.isRequired
+  addPlayer: React.PropTypes.func.isRequired
 };
 
 export default AddPlayerForm;

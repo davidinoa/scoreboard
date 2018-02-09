@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as PlayerActionCreators from '../actions/player';
@@ -7,41 +7,38 @@ import Header from '../components/Header';
 import AddPlayerForm from '../components/AddPlayerForm';
 
 class Scoreboard extends Component {
-
-  render() {
+  render() {    
     const { dispatch, players } = this.props;
-    const addPlayer = bindActionCreators(PlayersActionCreators.addPlayer, dispatch);
-    const removePlayer = bindActionCreators(PlayersActionCreators.removePlayer, dispatch);
-    const updatePlayerScore = bindActionCreators(PlayersActionCreators.updatePlayerScore, dispatch);
-
+    const addPlayer = bindActionCreators(PlayerActionCreators.addPlayer, dispatch);
+    const removePlayer = bindActionCreators(PlayerActionCreators.removePlayer, dispatch);
+    const updatePlayerScore = bindActionCreators(PlayerActionCreators.updatePlayerScore, dispatch);
+    
     const playerComponents = players.map((player, index) => (
-      <Player
+      <Player 
         index={index}
         name={player.name}
         score={player.score}
-        key={player.name} 
+        key={player.name}
         updatePlayerScore={updatePlayerScore}
         removePlayer={removePlayer} />
     ));
-
+    
     return (
       <div className="scoreboard">
-        <Header title="Scoreboard" players={players} />
-
+        <Header players={players} />
         <div className="players">
-          {playerComponents}
+          { playerComponents }
         </div>
-
-        <AddPlayerForm addPlayer={addPlayer}/>
+        <AddPlayerForm addPlayer={addPlayer} />
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = state => (
   {
     players: state
   }
-}
+);
 
 export default connect(mapStateToProps)(Scoreboard);

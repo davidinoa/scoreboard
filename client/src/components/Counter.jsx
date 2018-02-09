@@ -4,13 +4,13 @@ const Counter = (props) => (
   <div className="counter">
     <button 
       className="counter-action decrement"
-      onClick={ () => props.onChange(-1) }> 
+      onClick={() => props.updatePlayerScore(props.index, -1)}> 
         - 
     </button>
     <div className="counter-score"> {props.score} </div>
     <button 
       className="counter-action increment"
-      onClick={ () => props.onChange(+1) }> 
+      onClick={() => props.updatePlayerScore(props.index, 1)}> 
         + 
     </button>
   </div>
@@ -18,7 +18,8 @@ const Counter = (props) => (
 
 Counter.propTypes = {
   score: React.PropTypes.number.isRequired,
-  onChange: React.PropTypes.func.isRequired
+  number: React.PropTypes.number.isRequired,
+  updatePlayerScore: React.PropTypes.func.isRequired
 };
 
 export default Counter;

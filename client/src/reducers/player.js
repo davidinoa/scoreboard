@@ -32,16 +32,16 @@ export default function Player(state=initialState, action) {
         ...state.slice(action.index + 1)
       ];
       
-    // case PlayerActionTypes.UPDATE_PLAYER_SCORE:
-    //   return state.map((player, index) => {
-    //     if(index === action.index) {
-    //       return {
-    //         ...player,
-    //         score: player.score + action.score
-    //       };
-    //     }
-    //     return player;
-    //   });
+    case PlayerActionTypes.UPDATE_PLAYER_SCORE:
+      return state.map((player, index) => {
+        if(index === action.index) {
+          return {
+            name: player.name,
+            score: player.score + action.score
+          };
+        }
+        return player;
+      });
       
     default:
       return state;
