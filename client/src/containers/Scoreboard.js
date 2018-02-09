@@ -1,16 +1,12 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as PlayerActionCreators from '../actions/players';
+import * as PlayerActionCreators from '../actions/player';
 import Player from '../components/Player';
 import Header from '../components/Header';
 import AddPlayerForm from '../components/AddPlayerForm';
 
 class Scoreboard extends Component {
-
-  static propTypes = {
-    players: PropTypes.array.isRequired
-  } 
 
   render() {
     const { dispatch, players } = this.props;
